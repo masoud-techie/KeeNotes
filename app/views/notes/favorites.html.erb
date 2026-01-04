@@ -1,8 +1,7 @@
-<h1>My Notes</h1>
+<h1>Favorite Notes ⭐</h1>
 
-<%= link_to "New Note", new_note_path %> |
-<%= link_to "Favorite Notes ⭐", favorites_notes_path %> |
-<%= button_to "Logout", destroy_user_session_path, method: :delete %>
+<%= link_to "All Notes", notes_path %> |
+<%= link_to "New Note", new_note_path %>
 
 <hr>
 
@@ -28,5 +27,5 @@
     <hr>
   <% end %>
 <% else %>
-  <p>No notes yet.</p>
+  <p>No favorite notes yet.</p>
 <% end %>
