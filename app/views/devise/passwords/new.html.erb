@@ -1,12 +1,28 @@
 <div class="container">
   <div class="my-centered-form-wrapper mx-auto" style="max-width: 400px;">
     <h2 class="text-center mb-4">Forgot your password?</h2>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
+    <% if resource.errors.any? %>
+      <div class="alert alert-danger">
+        <ul class="mb-0">
+          <% resource.errors.full_messages.each do |msg| %>
+            <%= msg %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
 
     <%= form_for(resource, as: resource_name,
                  url: password_path(resource_name),
                  html: { method: :post }) do |f| %>
 
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <%#= render "devise/shared/error_messages", resource: resource %>
 
       <div class="mb-3">
         <%= f.label :email, class: "form-label" %>
@@ -17,7 +33,7 @@
       </div>
 
       <div class="d-grid">
-        <%= f.submit "Send me reset password instructions",
+        <%= f.submit "Reset Password",
               class: "btn btn-primary" %>
       </div>
 
