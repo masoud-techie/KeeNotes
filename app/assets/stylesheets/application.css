@@ -31,3 +31,13 @@
 .bi-journals {
     color: #e0e0e0; !important;
 }
+
+.landing {
+    min-height: 70vh;
+}
+
+@media (max-width: 576px) {
+    .landing {
+        min-height: 50vh;
+    }
+}
