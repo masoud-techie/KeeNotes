@@ -1,6 +1,17 @@
 <div class="container">
   <div class="my-centered-form-wrapper mx-auto" style="max-width: 400px;">
     <h2 class="text-center mb-4">Sign in</h2>
+    <% if resource.errors.any? %>
+      <div class="alert alert-danger">
+        <ul class="mb-0">
+          <% resource.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
