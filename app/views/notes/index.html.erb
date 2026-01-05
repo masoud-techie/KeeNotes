@@ -3,7 +3,7 @@
 <div class="mb-3">
   <%= link_to "New Note", new_note_path, class: "btn btn-primary me-2" %>
   <% if user_signed_in? && current_user.notes.exists? %>
-    <%= link_to "Favorites", favorites_notes_path,
+    <%= link_to "Show Favorites", favorites_notes_path,
                 class: "btn btn-warning me-2" %>
   <% end %>
 
@@ -16,7 +16,7 @@
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title">
-              <%= link_to note.title, note %>
+              <%= link_to note.title, note, class: "text-dark text-decoration-none"%>
               <% if note.favorite %> <span class="text-warning">⭐</span>
               <% end %>
             </h5>
