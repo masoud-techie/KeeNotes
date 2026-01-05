@@ -1,6 +1,12 @@
 <div class="container">
   <div class="my-centered-form-wrapper mx-auto" style="max-width: 400px;">
     <h2 class="text-center mb-4">Sign in</h2>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
     <% if resource.errors.any? %>
       <div class="alert alert-danger">
         <ul class="mb-0">
