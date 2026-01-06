@@ -7,7 +7,6 @@ class CreateNoteShares < ActiveRecord::Migration[7.1]
       t.timestamps
     end
 
-    remove_index :note_shares, column: [:note_id, :user_id], if_exists: true
-
+    add_index :note_shares, [:note_id, :user_id], unique: true
   end
 end
