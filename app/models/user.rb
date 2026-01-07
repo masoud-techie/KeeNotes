@@ -11,12 +11,15 @@ class User < ApplicationRecord
 
   # app/models/user.rb
   validates :name, presence: true
-
+  validates :last_name, presence: true
   before_save :capitalize_name
 
   def capitalize_name
     self.name = name.titleize if name.present?
   end
 
+  def full_name
+    "#{name} #{last_name}"
+  end
 
 end
