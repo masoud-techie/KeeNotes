@@ -9,7 +9,7 @@
 
       <div class="mt-4">
         <% if user_signed_in? %>
-          <%= link_to "Go to My Notes", notes_path, class: "btn btn-primary btn-lg me-2" %>
+          <%= link_to "Go to My Notes", notes_path, class: "btn btn-teal btn-lg me-2" %>
         <% else %>
           <%= link_to "Get Started", new_user_registration_path, class: "btn btn-teal btn-lg me-2" %>
           <%= link_to "Log In", new_user_session_path, class: "btn btn-outline-secondary btn-lg" %>
@@ -23,13 +23,13 @@
 <section class="py-5 text-center p-3 bg-light">
   <div class="container">
     <div class="row text-center mb-4">
-      <h2 class="fw-bold">Why Kee-Notes?</h2>
+      <h2 class="fw-bold">Features</h2>
       <p class="text-muted">Everything you need to stay organized</p>
     </div>
 
     <div class="row g-4">
       <div class="col-md-4">
-        <div class="card note-card  h-100 shadow-sm">
+        <div class="card features-note-card  h-100 shadow-sm">
           <div class="card-body">
             <h5 class="card-title">📝 Easy Notes Creation</h5>
             <p class="card-text">
@@ -40,7 +40,7 @@
       </div>
 
       <div class="col-md-4">
-        <div class="card note-card  h-100 shadow-sm">
+        <div class="card features-note-card  h-100 shadow-sm">
           <div class="card-body">
             <h5 class="card-title">🔒 Secure & Private</h5>
             <p class="card-text">
@@ -51,7 +51,7 @@
       </div>
 
       <div class="col-md-4">
-        <div class="card note-card  h-100 shadow-sm">
+        <div class="card features-note-card  h-100 shadow-sm">
           <div class="card-body">
             <h5 class="card-title">☁️ Cloud Sync</h5>
             <p class="card-text">
