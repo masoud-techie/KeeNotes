@@ -17,9 +17,11 @@ class NotesController < ApplicationController
     owned_ids  = current_user.notes.select(:id)
     shared_ids = current_user.shared_notes.select(:id)
 
-    @notes = Note.where(id: owned_ids)
-                 .or(Note.where(id: shared_ids))
-                 .order(updated_at: :desc)
+    @notes = Note
+               .left_joins(:note_shares)
+               .where("notes.user_id = :user_id OR note_shares.user_id = :user_id",
+                      user_id: current_user.id)
+               .distinct
   end
 
   # Show favorite notes only
@@ -62,7 +64,8 @@ class NotesController < ApplicationController
 
   # Delete note
   def destroy
-    @note.destroy
+    note = current_user.notes.find(params[:id])
+    note.destroy
     redirect_to notes_path, notice: "Note deleted."
   end
 

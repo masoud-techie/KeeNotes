@@ -16,8 +16,9 @@ class NoteSharesController < ApplicationController
   end
 
   def destroy
-    share = current_user.note_shares.find(params[:id])
-    share.destroy
-    redirect_to notes_path, notice: "Access removed."
+    note_share = current_user.note_shares.find_by!(note_id: params[:id])
+    note_share.destroy
+    redirect_to notes_path, notice: "Note removed from your notes."
   end
+
 end

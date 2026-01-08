@@ -35,8 +35,6 @@
             <% end %>
 
 
-
-
           </div>
 
           <div class="card-footer">
@@ -80,12 +78,24 @@
                 <p type="" class="text-dark" data-bs-toggle="modal" data-bs-target="#shareModal">
                   <i class="bi bi-share"></i>
                 </p>
-                <%= button_to note_path(note),
-                              method: :delete,
-                              data: { confirm: "Delete this note?" },
-                              class: "btn btn-link text-danger p-0" do %>
-                  <i class="bi bi-trash"></i>
+
+                <% if note.user == current_user %>
+                  <%= button_to note_path(note),
+                                method: :delete,
+                                class: "btn btn-link text-danger p-0" do %>
+                    <i class="bi bi-trash"></i>
+                  <% end %>
+                <% else %>
+                  <%= button_to note_share_path(note),
+                                method: :delete,
+                                data: { turbo_confirm: "Remove this note from your notes?" },
+                                class: "btn btn-link text-danger p-0" do %>
+                    <i class="bi bi-trash"></i>
+                  <% end %>
                 <% end %>
+
+
+
 
               </div>
             </div>
