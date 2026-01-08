@@ -1,13 +1,15 @@
-# 📝 Notes App (Ruby on Rails)
+# 📝 Kee-Notes - Note taking App (Ruby on Rails)
 
-A simple and clean **Notes application** built with **Ruby on Rails** that allows users to sign up, log in, and manage their personal notes securely. The app uses **Devise** for authentication and **Bootstrap 5** for a modern, responsive UI.
+[![Live App](https://img.shields.io/badge/Live-App-success)](https://www.kee-notes.blog/)
 
+You can access the live version of KeeNotes here: 👉 [https://www.kee-notes.blog](https://www.kee-notes.blog/)
+
+KeeNotes is a simple and clean **Notes application** built with **Ruby on Rails** that allows users to sign up, log in, and manage their personal notes securely. The app uses **Devise** for authentication and **Bootstrap 5** for a modern, responsive UI.
 * * *
 
 ## 🚀 Features
 
 - User authentication (Sign up, Log in, Log out)
-- Forgot password & password recovery
 - Create, edit, and delete notes
 - Notes belong to the logged-in user only
 - Display note creation date
@@ -23,8 +25,10 @@ A simple and clean **Notes application** built with **Ruby on Rails** that allow
 - **Ruby on Rails** 7+
 - **Devise** – Authentication
 - **Bootstrap 5** – Styling
-- **SQLite** (development)
+- **PostgreSQL** - (production)
+- **SQLite** - (development)
 - **ERB** – Views
+- **Heroku** - (Deployment)
 
 * * *
 
@@ -40,7 +44,7 @@ cd note_taking-app
 ### 2: Install Dependencies
 
 ```
-Install dependencies
+bundle install
 ```
 
 ### 3: Setup the database
@@ -68,13 +72,13 @@ This app uses **Devise** for user authentication.
 
 Included Devise pages:
 
+- Sign up
+
 - Login
     
-- Sign up
+- Forgot password - (Under development)
     
-- Forgot password
-    
-- Password reset
+- Password reset - (Under development)
     
 
 All authentication pages share a consistent Bootstrap-based layout.
@@ -89,7 +93,7 @@ All authentication pages share a consistent Bootstrap-based layout.
     
 - Rich text editor
     
-- Sharing notes
+- Sharing notes ✅
     
 - API support
     
