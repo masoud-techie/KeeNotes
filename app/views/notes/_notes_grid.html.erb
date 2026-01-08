@@ -18,13 +18,25 @@
 
             <p class="card-text text-muted small"><%= note.description %></p>
 
-            <% if note.user != current_user %>
-              <div class="pb-2">
+            <% if note.shared_users.any? %>
+              <% if note.user != current_user %>
+                <div class="pb-2">
                 <span class="badge bg-green">
                   Shared by <%= note.user.email %>
                 </span>
-              </div>
+                </div>
+              <% else %>
+
+                <small class="badge bg-green">
+                  Shared with:
+                  <%= note.shared_users.pluck(:email).join(", ") %>
+                </small>
+              <% end %>
             <% end %>
+
+
+
+
           </div>
 
           <div class="card-footer">

@@ -1,10 +1,19 @@
 <div class="card shadow-lg border-0 mt-3">
   <div class="p-3">
     <% if @note.shared_users.any? %>
-      <small class="text-muted">
+      <% if @note.user != current_user %>
+        <div class="pb-2">
+                <span class="badge bg-green">
+                  Shared by <%= @note.user.email %>
+                </span>
+        </div>
+      <% else %>
+
+      <small class="badge bg-green">
         Shared with:
         <%= @note.shared_users.pluck(:email).join(", ") %>
       </small>
+      <% end %>
     <% end %>
     <h3 class="mt-3"><%= @note.title %><%= @note.favorite ? " ⭐" : "" %></h3>
     <p><%= @note.description %></p>
