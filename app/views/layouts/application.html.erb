@@ -5,7 +5,11 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WCEEY2WKBN"></script>
   <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+
       gtag('js', new Date());
 
       gtag('config', 'G-WCEEY2WKBN');
@@ -33,6 +37,12 @@
 <%#= render "shared/header" %>
 <%= render "shared/navbar" %>
 <main class="flex-fill notes-body">
+  <% if notice %>
+    <div class="alert alert-success text-center">
+      <%= notice %>
+    </div>
+  <% end %>
+
   <div class="main">
     <%= yield %>
   </div>

@@ -6,7 +6,7 @@ class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy, :toggle_favorite]
 
   before_action :authorize_owner!, only: [:edit, :update, :destroy]
-
+  before_action :set_note, only: [:archive, :unarchive]
   def authorize_owner!
     redirect_to notes_path, alert: "Not authorized." unless @note.user == current_user
   end
@@ -14,15 +14,18 @@ class NotesController < ApplicationController
 
   # List all notes for current user
   def index
-    owned_ids  = current_user.notes.select(:id)
-    shared_ids = current_user.shared_notes.select(:id)
-
     @notes = Note
+               .active
                .left_joins(:note_shares)
-               .where("notes.user_id = :user_id OR note_shares.user_id = :user_id",
-                      user_id: current_user.id)
+               .where(
+                 "notes.user_id = :user_id OR note_shares.user_id = :user_id",
+                 user_id: current_user.id
+               )
                .distinct
+               .order(created_at: :desc)
   end
+
+
 
   # Show favorite notes only
   def favorites
@@ -81,6 +84,19 @@ class NotesController < ApplicationController
     redirect_back fallback_location: notes_path
   end
 
+  def archive
+    @note = current_user.notes.find(params[:id])
+    @note.update(archived: true)
+
+    redirect_to notes_path, notice: "Note archived"
+  end
+
+
+  def unarchive
+    @note.update(archived: false)
+    redirect_to archived_notes_path, notice: "Note restored"
+  end
+
 
   private
 
@@ -89,8 +105,4 @@ class NotesController < ApplicationController
     @note = current_user.notes.find_by(id: params[:id]) ||
             current_user.shared_notes.find(params[:id])
   end
-
-  # Strong params
-
-
 end

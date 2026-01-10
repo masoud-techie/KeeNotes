@@ -72,6 +72,12 @@
               <% end %>
             <% end %>
 
+            <%= link_to archive_note_path(note),
+                        data: { turbo_method: :patch, turbo_confirm: "Archive this note?" },
+                        class: "btn btn-sm" do %>
+              <i class="bi bi-archive"></i>
+            <% end %>
+
           </div>
         </div>
       </div>

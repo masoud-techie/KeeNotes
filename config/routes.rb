@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
     member do
       patch :toggle_favorite
+      patch :archive
+      patch :unarchive
     end
 
     resources :note_shares, only: :create
