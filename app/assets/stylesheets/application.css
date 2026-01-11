@@ -158,7 +158,9 @@
 .favorite-btn {
     opacity: 0.4;
 }
-
+.my-centered-form-wrapper{
+    border-radius: 10px; !important;
+}
 
 
 

@@ -37,12 +37,6 @@
 <%#= render "shared/header" %>
 <%= render "shared/navbar" %>
 <main class="flex-fill notes-body">
-  <% if notice %>
-    <div class="alert alert-success text-center">
-      <%= notice %>
-    </div>
-  <% end %>
-
   <div class="main">
     <%= yield %>
   </div>
