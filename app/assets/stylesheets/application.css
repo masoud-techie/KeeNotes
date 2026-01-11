@@ -5,7 +5,7 @@
     --saffron: #E9C46A;
     --sandy-orange: #F4A261;
     --sienna-red: #E76F51;
-    --off-white: #f5f5f5;
+    --off-white: #ECEFF1;
     --bg-green: #5F9598;
 }
 
@@ -65,7 +65,7 @@
 .text-sienna { color: var(--sienna-red); }
 .bg-sandy { background-color: var(--sandy-orange); color: #fff; }
 
-/*.notes-body { background-color: var(--off-white) !important; }*/
+.notes-body { background-color: var(--off-white) !important; }
 
 .bg-green {
     background-color: var(--bg-green);

@@ -24,7 +24,7 @@ class NotesController < ApplicationController
   end
 
   def archived
-    @notes = visible_notes(Note.archived)
+    @archived_notes = current_user.notes.archived
   end
 
   # Show favorite notes only
