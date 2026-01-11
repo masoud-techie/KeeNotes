@@ -36,11 +36,14 @@
 <body class="d-flex flex-column min-vh-100">
 <%#= render "shared/header" %>
 <%= render "shared/navbar" %>
-<main class="flex-fill notes-body">
-  <div class="main">
+
+<div class="app-layout d-flex">
+  <%= render "shared/sidebar" %>
+
+  <main class="content flex-grow-1">
     <%= yield %>
-  </div>
-</main>
+  </main>
+</div>
 <%= render "shared/footer" %>
 
 

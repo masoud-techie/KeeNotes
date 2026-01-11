@@ -161,6 +161,43 @@
 .my-centered-form-wrapper{
     border-radius: 10px; !important;
 }
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    /*min-height: 100vh;*/
+    padding: 1rem;
+    position: sticky;
+    top: 56px;
+    background-color: #3D3F5B; /* Teal */
+    color: #fff;
+}
 
+/* App layout for main content */
+.app-layout {
+    min-height: calc(100vh - 56px); /* navbar height */
+}
 
+/* Sidebar & Offcanvas Links */
+.sidebar .nav-link,
+.offcanvas .nav-link {
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+}
 
+.sidebar .nav-link:hover,
+.offcanvas .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Offcanvas width (mobile) */
+.offcanvas-end {
+    width: 220px;
+}
+
+.offcanvas-end {
+    width: 220px; /* match desktop sidebar width */
+}
+
+.offcanvas .btn {
+    border-radius: 8px;
+}

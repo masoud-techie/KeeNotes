@@ -1,6 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
-  <div class="container-fluid">
-    <!-- Logo + Brand -->
+<nav class="navbar navbar-dark shadow-sm px-3">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
+
+    <!-- Brand -->
     <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
       <%= image_tag "kee-notes-logo.png",
                     alt: "KeeNotes",
@@ -10,44 +11,13 @@
       </span>
     <% end %>
 
-    <!-- Mobile toggle -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Nav links -->
-    <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
-      <ul class="navbar-nav align-items-lg-center gap-lg-3">
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "Notes", notes_path, class: "nav-link" %>
-          </li>
-
-          <li class="nav-item">
-            <%= link_to "Favorites", favorites_notes_path, class: "nav-link" %>
-          </li>
-
-          <li class="nav-item">
-            <%= link_to "Archived", archived_notes_path, class: "nav-link" %>
-          </li>
-
-          <li class="nav-item">
-            <%= button_to "Logout",
-                          destroy_user_session_path,
-                          method: :delete,
-                          class: "nav-link btn btn-link" %>
-
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-
-
-
-
-      <% end %>
-      </ul>
-    </div>
+    <% if user_signed_in? %>
+      <!-- Mobile Hamburger Menu on Right -->
+      <button class="btn btn-link text-light d-lg-none"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#mobileSidebar">
+        <i class="bi bi-list fs-3"></i>
+      </button>
+    <% end %>
   </div>
 </nav>

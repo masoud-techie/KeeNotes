@@ -1,0 +1,43 @@
+<% if user_signed_in? %>
+
+  <!-- Mobile Offcanvas Sidebar (Right side) -->
+  <div class="offcanvas offcanvas-end bg-dark text-light d-lg-none"
+       tabindex="-1"
+       id="mobileSidebar">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title fw-bold">
+        Menu
+      </h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+
+    <div class="offcanvas-body d-flex flex-column justify-content-between">
+      <!-- Links -->
+      <ul class="nav flex-column gap-2 mb-3">
+        <%= render "shared/sidebar_links" %>
+      </ul>
+
+      <!-- Logout Button at bottom -->
+      <div>
+        <%= button_to "Logout",
+                      destroy_user_session_path,
+                      method: :delete,
+                      class: "btn btn-outline-light w-100" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop Sidebar (Left) -->
+  <aside class="sidebar text-light d-none d-lg-block ">
+    <ul class="nav flex-column gap-2">
+      <%= render "shared/sidebar_links" %>
+    </ul>
+    <div class="mt-3">
+      <%= button_to "Logout",
+                    destroy_user_session_path,
+                    method: :delete,
+                    class: "btn btn-outline-light w-100" %>
+    </div>
+  </aside>
+
+<% end %>
