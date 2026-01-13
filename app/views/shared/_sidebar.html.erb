@@ -5,13 +5,19 @@
        tabindex="-1"
        id="mobileSidebar">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title fw-bold">
-        Menu
-      </h5>
+      <div class="">
+        <%= image_tag "kee-notes-logo.png",
+                      alt: "KeeNotes",
+                      class: "navbar-logo me-2" %>
+        <span class="fw-bold">
+        Kee<span class="text-teal">Notes</span>
+      </span>
+      </div>
       <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
     </div>
 
     <div class="offcanvas-body d-flex flex-column justify-content-between">
+
 
       <!-- Links -->
       <ul class="nav flex-column gap-2 mb-3">
@@ -30,6 +36,14 @@
 
   <!-- Desktop Sidebar (Left) -->
   <aside class="sidebar text-light d-none d-lg-block ">
+    <div class="navbar-dark shadow-sm p-2">
+      <%= image_tag "kee-notes-logo.png",
+                    alt: "KeeNotes",
+                    class: "navbar-logo " %>
+      <span class="fw-bold">
+        Kee<span class="text-teal">Notes</span>
+      </span>
+    </div>
     <ul class="nav flex-column gap-2">
       <%= render "shared/sidebar_links" %>
     </ul>

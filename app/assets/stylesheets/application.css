@@ -50,16 +50,6 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
 }
 
-.text-saffron { color: var(--saffron); }
-.text-sienna { color: var(--sienna-red); }
-.bg-sandy { background-color: var(--sandy-orange); color: #fff; }
-
-.notes-body { background-color: var(--off-white) !important; }
-
-.bg-green {
-    background-color: var(--bg-green);
-}
-
 .bi-share {
     /*color: #2A9D8F; !important;*/
     cursor: pointer;
@@ -138,7 +128,7 @@
     background: #fff;
     border-radius: 10px;
     padding: 1rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .card:hover .favorite-btn {
@@ -153,21 +143,24 @@
 /* Sidebar */
 .sidebar {
     width: 220px;
-    /*min-height: 100vh;*/
-    padding: 1rem;
+    min-height: 100vh;
     position: sticky;
     top: 56px;
     background-color: #3D3F5B; /* Teal */
     color: #fff;
 }
 
-/* App layout for main content */
-.app-layout {
-    min-height: calc(100vh); /* navbar height */
+.sidebar ul{
+    padding: 1.5rem;
 }
 
-.app-layout-auth {
-    min-height: calc(100vh - 170px); /* navbar height */
+/* App layout for main content */
+.app-layout {
+    min-height: calc(100vh - 146px); /* navbar height */
+}
+
+.app-layout-auth{
+    min-height: calc(100vh - 170px);
 }
 
 /* Sidebar & Offcanvas Links */
@@ -194,4 +187,3 @@
 .offcanvas .btn {
     border-radius: 8px;
 }
-
