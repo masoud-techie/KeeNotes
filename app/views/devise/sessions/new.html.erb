@@ -1,4 +1,5 @@
-<div class="container">
+<%= render "shared/navbar" %>
+<div class="container app-layout-auth">
   <div class="my-centered-form-wrapper bg-white mx-auto p-5 rounded-ls mt-5" style="max-width: 400px;">
     <h2 class="text-center mb-4">Sign in</h2>
     <% if flash[:alert] %>
@@ -55,3 +56,4 @@
     </div>
   </div>
 </div>
+<%= render "shared/footer" %>

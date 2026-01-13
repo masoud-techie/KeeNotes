@@ -5,7 +5,7 @@
     --saffron: #E9C46A;
     --sandy-orange: #F4A261;
     --sienna-red: #E76F51;
-    --off-white: #ECEFF1;
+    --off-white: #de5959;
     --bg-green: #5F9598;
 }
 
@@ -31,17 +31,6 @@
 .bi-journals {
     color: #e0e0e0; !important;
 }
-
-.landing {
-    min-height: 70vh;
-}
-
-@media (max-width: 576px) {
-    .landing {
-        min-height: 50vh;
-    }
-}
-
 
 .navbar, .footer { background-color: var(--charcoal) !important; }
 
@@ -174,7 +163,11 @@
 
 /* App layout for main content */
 .app-layout {
-    min-height: calc(100vh - 56px); /* navbar height */
+    min-height: calc(100vh); /* navbar height */
+}
+
+.app-layout-auth {
+    min-height: calc(100vh - 170px); /* navbar height */
 }
 
 /* Sidebar & Offcanvas Links */
@@ -201,3 +194,4 @@
 .offcanvas .btn {
     border-radius: 8px;
 }
+

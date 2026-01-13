@@ -1,4 +1,5 @@
 <!-- HERO SECTION -->
+<%= render "shared/navbar" %>
 <div class="bg-cover" style="background-image: url('<%= asset_path("hero-notes.webp") %>'); height: 400px;">
   <div class="container text-white py-5">
     <div class="container container-600 mx-2 text-white">
@@ -102,34 +103,4 @@
   </div>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<div class="d-flex flex-column justify-content-center align-items-center text-center landing" style="">-->
-<!--  <h1 class="display-4 mb-4">Welcome to KeeNotes</h1>-->
-<!--  <p class="lead mb-4">Take notes, mark favorites, and keep your ideas organized — all in one place!</p>-->
-
-  <%# if user_signed_in? %>
-    <%#= link_to "Go to My Notes", notes_path, class: "btn btn-primary btn-lg me-2" %>
-  <%# else %>
-    <%#= link_to "Sign Up", new_user_registration_path, class: "btn btn-success btn-lg me-2" %>
-  <%# end %>
-
-  <%# unless user_signed_in? %>
-<!--    <div class="pt-3">-->
-<!--      Already have an account? <%#= link_to "Sign In", new_user_session_path, class: "text-decoration-none"%>-->
-<!--    </div>-->
-  <%# end %>
-<!--</div>-->
+<%= render "shared/footer" %>
