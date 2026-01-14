@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       get :favorites
       get :archived
       get :recycle_bin
+      delete :empty_recycle_bin
     end
 
     member do

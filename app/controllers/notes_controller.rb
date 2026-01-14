@@ -100,20 +100,24 @@ class NotesController < ApplicationController
   end
 
   def recycle_bin
-    @notes = Note.deleted.order(deleted_at: :desc)
+    @notes = current_user.notes
+                         .merge(Note.deleted)
+                         .order(deleted_at: :desc)
   end
 
+
   def restore
-    note = Note.deleted.find(params[:id])
+    note = current_user.notes.deleted.find(params[:id])
     note.restore
-    redirect_to recycle_bin_notes_path, notice: "Note restored successfully"
+    redirect_to recycle_bin_notes_path, notice: "Note restored successfully."
   end
 
   def destroy_permanently
-    note = Note.deleted.find(params[:id])
+    note = current_user.notes.deleted.find(params[:id])
     note.destroy
-    redirect_to recycle_bin_notes_path, alert: "Note permanently deleted"
+    redirect_to recycle_bin_notes_path, alert: "Note permanently deleted."
   end
+
 
   def set_note
     @note = current_user.notes
@@ -126,6 +130,16 @@ class NotesController < ApplicationController
     redirect_to notes_path, alert: "You cannot edit a deleted note." if @note.deleted?
   end
 
+  def empty_recycle_bin
+    notes = current_user.notes.deleted
+
+    if notes.exists?
+      notes.destroy_all
+      redirect_to recycle_bin_notes_path, alert: "Recycle Bin emptied."
+    else
+      redirect_to recycle_bin_notes_path, notice: "Recycle Bin is already empty."
+    end
+  end
 
   private
 

@@ -14,7 +14,7 @@ class Note < ApplicationRecord
 
   # 🔹 Recycle bin scope
   scope :deleted, -> {
-    unscope(where: :deleted_at).where.not(deleted_at: nil)
+    unscoped.where.not(deleted_at: nil)
   }
 
   before_update :unfavorite_if_archived
