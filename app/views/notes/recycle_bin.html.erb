@@ -1,0 +1,33 @@
+<h2 class="mb-4">🗑 Recycle Bin</h2>
+
+<% if @notes.any? %>
+  <div class="row g-3">
+    <% @notes.each do |note| %>
+      <div class="col-md-4">
+        <div class="card border-danger">
+          <div class="card-body">
+            <h5 class="card-title"><%= note.title %></h5>
+            <p class="text-muted small">
+              Deleted on <%= note.deleted_at.strftime("%b %d, %Y") %>
+            </p>
+
+            <div class="d-flex justify-content-between">
+              <%= button_to "Restore",
+                            restore_note_path(note),
+                            method: :patch,
+                            class: "btn btn-success btn-sm" %>
+
+              <%= button_to "Delete Forever",
+                            destroy_permanently_note_path(note),
+                            method: :delete,
+                            data: { confirm: "This cannot be undone. Continue?" },
+                            class: "btn btn-danger btn-sm" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="text-muted">Recycle Bin is empty.</p>
+<% end %>

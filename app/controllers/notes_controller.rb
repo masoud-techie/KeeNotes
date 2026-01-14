@@ -1,6 +1,9 @@
 class NotesController < ApplicationController
   # Devise helper: require login
   before_action :authenticate_user!
+  before_action :set_note, only: [:edit, :update]
+  before_action :redirect_if_deleted, only: [:edit, :update]
+
 
   # Only run set_note for actions that need an ID
   before_action :set_note, only: [:show, :edit, :update, :destroy, :toggle_favorite, :archive, :unarchive]
@@ -68,8 +71,8 @@ class NotesController < ApplicationController
   # Delete note
   def destroy
     note = current_user.notes.find(params[:id])
-    note.destroy
-    redirect_to notes_path, notice: "Note deleted."
+    note.soft_delete
+    redirect_to notes_path, notice: "Note moved to Recycle Bin."
   end
 
 
@@ -96,6 +99,32 @@ class NotesController < ApplicationController
     redirect_to archived_notes_path, notice: "Note restored"
   end
 
+  def recycle_bin
+    @notes = Note.deleted.order(deleted_at: :desc)
+  end
+
+  def restore
+    note = Note.deleted.find(params[:id])
+    note.restore
+    redirect_to recycle_bin_notes_path, notice: "Note restored successfully"
+  end
+
+  def destroy_permanently
+    note = Note.deleted.find(params[:id])
+    note.destroy
+    redirect_to recycle_bin_notes_path, alert: "Note permanently deleted"
+  end
+
+  def set_note
+    @note = current_user.notes
+                        .unscope(where: :deleted_at)
+                        .find_by(id: params[:id])
+  end
+
+  def redirect_if_deleted
+    return unless @note
+    redirect_to notes_path, alert: "You cannot edit a deleted note." if @note.deleted?
+  end
 
 
   private

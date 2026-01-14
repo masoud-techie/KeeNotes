@@ -14,12 +14,15 @@ Rails.application.routes.draw do
     collection do
       get :favorites
       get :archived
+      get :recycle_bin
     end
 
     member do
       patch :toggle_favorite
       patch :archive
       patch :unarchive
+      patch :restore
+      delete :destroy_permanently
     end
 
     resources :note_shares, only: :create
