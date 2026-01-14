@@ -1,33 +1,52 @@
-<h2 class="mb-4">🗑 Recycle Bin</h2>
+<%= render "shared/inner_navbar" %>
+<div class="p-3 ">
+  <h4 class="mt-3">Recycle Bin</h4>
 
-<% if @notes.any? %>
-  <div class="row g-3">
-    <% @notes.each do |note| %>
-      <div class="col-md-4">
-        <div class="card border-danger">
-          <div class="card-body">
-            <h5 class="card-title"><%= note.title %></h5>
+  <% if @notes.present? && @notes.any? %>
+    <div class="notes-masonry gap-3">
+      <% @notes.each do |note| %>
+        <!--      Note content-->
+        <div class="note-card pb-0">
+          <!--      Shared Notes Badge-->
+
+          <div class="d-flex justify-content-between">
+            <h6 class="card-title mb-1">
+              <%= note.title %>
+            </h6>
+          </div>
+
+          <p class="card-text text-muted small"><%= note.description %></p>
+
+          <div class="card-footer bg-transparent border-0 text-muted small d-flex justify-content-between align-items-center">
             <p class="text-muted small">
               Deleted on <%= note.deleted_at.strftime("%b %d, %Y") %>
             </p>
 
-            <div class="d-flex justify-content-between">
-              <%= button_to "Restore",
-                            restore_note_path(note),
+            <div class="d-flex gap-2 pt-3">
+              <%= button_to restore_note_path(note),
                             method: :patch,
-                            class: "btn btn-success btn-sm" %>
+                            data: { confirm: "This cannot be undone. Continue?" },
+                            class: "btn btn-link text-muted p-0" do %>
+                <i class="bi bi-arrow-counterclockwise"></i>
+              <% end %>
 
-              <%= button_to "Delete Forever",
-                            destroy_permanently_note_path(note),
+              <%= button_to destroy_permanently_note_path(note),
                             method: :delete,
                             data: { confirm: "This cannot be undone. Continue?" },
-                            class: "btn btn-danger btn-sm" %>
+                            class: "btn btn-link text-muted p-0" do %>
+                <i class="bi bi-trash"></i>
+              <% end %>
             </div>
           </div>
+
         </div>
-      </div>
-    <% end %>
-  </div>
-<% else %>
-  <p class="text-muted">Recycle Bin is empty.</p>
-<% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-muted">Recycle Bin is empty.</p>
+  <%end %>
+
+
+</div>
+
+
