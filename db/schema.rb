@@ -10,25 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_14_023548) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_catalog.plpgsql"
-
+ActiveRecord::Schema[8.1].define(version: 2026_01_14_041035) do
   create_table "note_shares", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.bigint "note_id", null: false
+    t.integer "note_id", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
+    t.index ["note_id", "user_id"], name: "index_note_shares_on_note_id_and_user_id", unique: true
     t.index ["note_id"], name: "index_note_shares_on_note_id"
     t.index ["user_id"], name: "index_note_shares_on_user_id"
   end
 
   create_table "notes", force: :cascade do |t|
-    t.boolean "archived"
+    t.boolean "archived", default: false
     t.datetime "created_at", null: false
     t.datetime "deleted_at"
     t.text "description"
     t.boolean "favorite", default: false
+    t.datetime "reminder_at"
+    t.boolean "reminder_enabled"
     t.string "title"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false

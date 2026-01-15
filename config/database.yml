@@ -1,29 +1,30 @@
 default: &default
-  adapter: postgresql
-  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
+  timeout: 5000
 
 development:
   <<: *default
-  database: kee_notes_development
+  adapter: sqlite3
+  database: db/development.sqlite3
 
 test:
   <<: *default
-  database: kee_notes_test
+  adapter: sqlite3
+  database: db/test.sqlite3
 
 production:
   primary:
-    <<: *default
+    adapter: postgresql
     url: <%= ENV["DATABASE_URL"] %>
 
   cable:
-    <<: *default
+    adapter: postgresql
     url: <%= ENV["DATABASE_URL"] %>
 
   queue:
-    <<: *default
+    adapter: postgresql
     url: <%= ENV["DATABASE_URL"] %>
 
   cache:
-    <<: *default
+    adapter: postgresql
     url: <%= ENV["DATABASE_URL"] %>
