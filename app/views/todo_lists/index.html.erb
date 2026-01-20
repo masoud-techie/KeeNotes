@@ -1,0 +1,33 @@
+<%= render "shared/inner_navbar" %>
+<div class="todo-lists-container p-3">
+  <div class="page-header">
+    <h3>My Todo Lists</h3>
+    
+    <div class="mb-3">
+      <%= link_to new_todo_list_path, class: "btn btn-teal btn-sm" do %>
+        <i class="bi bi-plus-square"></i>
+        Create a new todo ...
+      <% end %>
+    </div>
+
+  </div>
+
+  <% if @todo_lists.empty? %>
+    <div class="empty-state">
+      <p>No todo lists yet. <%= link_to "Create one!", new_todo_list_path %></p>
+    </div>
+  <% else %>
+    <div class="todo-lists-grid">
+      <% @todo_lists.each do |list| %>
+        <div class="todo-list-card d-flex align-items-center gap-3">
+          <h4 class="pt-1 "><%= link_to list.title, todo_list_path(list) %></h4>
+          <div class="">
+            <%= link_to todo_list_path(list), method: :delete, class: "text-danger" do %>
+              <i class="bi bi-trash3"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

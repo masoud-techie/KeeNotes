@@ -1,0 +1,27 @@
+<%= render "shared/inner_navbar" %>
+<div class="todo-list-container p-3">
+  <div class="todo-list-header">
+    <h3><%= @todo_list.title %></h3>
+
+    <div class="mb-3">
+      <%= link_to todo_lists_path, class: "btn btn-secondary btn-sm" do %>
+        <i class="bi bi-arrow-return-left"></i>
+        Back to Lists
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="add-item-section">
+    <br/>
+    <%= form_with model: [@todo_list, TodoItem.new], local: true do |f| %>
+      <%= f.text_field :title, placeholder: "What needs to be done?" %>
+      <%= f.submit "Add Item", class: "btn btn-teal btn-sm" %>
+    <% end %>
+  </div>
+
+  <div class="todo-items-section">
+    <%= render partial: "todo_items/todo_items_grid",
+               locals: { todo_items: @todo_list.todo_items, empty_message: "No todo items yet" } %>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="todo-items-grid">
+  <% if todo_items.empty? %>
+    <p class="empty-message"><%= empty_message %></p>
+  <% else %>
+    <div class="items-container pt-2">
+      <% todo_items.each do |item| %>
+        <div class="todo-item d-flex align-items-center gap-3 p-1 border rounded mb-1" id="todo-item-<%= item.id %>">
+          <div class="item-checkbox">
+            <%= form_with model: item, local: true, method: :patch, remote: true do |f| %>
+              <%= f.hidden_field :completed, value: !item.completed %>
+              <%= f.checkbox :completed, { class: "todo-checkbox", onchange: "this.form.submit()" }, item.completed, !item.completed %>
+            <% end %>
+          </div>
+          <div class="item-content">
+            <span class="item-title <%= 'completed' if item.completed %>">
+              <%= item.title %>
+            </span>
+          </div>
+          <div class="item-actions">
+            <%= button_to "Delete", item, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
