@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_14_041035) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_20_120437) do
   create_table "note_shares", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "note_id", null: false
@@ -35,6 +35,23 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_14_041035) do
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
+  create_table "todo_items", force: :cascade do |t|
+    t.boolean "completed"
+    t.datetime "created_at", null: false
+    t.string "title"
+    t.integer "todo_list_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["todo_list_id"], name: "index_todo_items_on_todo_list_id"
+  end
+
+  create_table "todo_lists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_todo_lists_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email", default: "", null: false
@@ -52,4 +69,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_14_041035) do
   add_foreign_key "note_shares", "notes"
   add_foreign_key "note_shares", "users"
   add_foreign_key "notes", "users"
+  add_foreign_key "todo_items", "todo_lists"
+  add_foreign_key "todo_lists", "users"
 end

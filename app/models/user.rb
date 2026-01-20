@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   has_many :note_shares, dependent: :destroy
   has_many :shared_notes, through: :note_shares, source: :note
-
+  has_many :todo_lists, dependent: :destroy
   # app/models/user.rb
   validates :name, presence: true
   validates :last_name, presence: true

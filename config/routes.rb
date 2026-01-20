@@ -33,4 +33,11 @@ Rails.application.routes.draw do
 
   resources :note_shares, only: :destroy
 
+  resources :todo_lists, only: [:index, :create, :show, :new, :destroy] do
+    resources :todo_items, only: [:create]
+  end
+
+  resources :todo_items, only: [:update, :destroy]
+
+
 end
